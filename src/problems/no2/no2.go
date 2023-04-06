@@ -1,11 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-leetcode/src/common"
+)
 
-//type ListNode struct {
-//	Val  int
-//	Next *ListNode
-//}
+type ListNode = common.ListNode
 
 /*
 *
