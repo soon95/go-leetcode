@@ -75,11 +75,58 @@ func searchRange(nums []int, target int) []int {
 	return []int{targetStart, targetEnd}
 }
 
+func searchRangeV2(nums []int, target int) []int {
+
+	start := doSearch(nums, target)
+
+	end := doSearch(nums, target+1)
+
+	startAns := -1
+	endAns := -1
+
+	if start < len(nums) && nums[start] == target {
+		startAns = start
+	}
+
+	if end > 0 && nums[end-1] == target {
+		endAns = end - 1
+	}
+
+	return []int{startAns, endAns}
+}
+
+/*
+*
+寻找 >=target 的第一个数
+这个是核心
+*/
+func doSearch(nums []int, target int) int {
+	start := 0
+	end := len(nums) - 1
+
+	for start <= end {
+
+		middle := (start + end) / 2
+
+		if nums[middle] < target {
+
+			start = middle + 1
+
+		} else {
+
+			end = middle - 1
+		}
+
+	}
+
+	return start
+}
+
 func main() {
 
 	nums := []int{}
-	target := 0
+	target := 5
 
-	fmt.Printf("%v\n", searchRange(nums, target))
+	fmt.Printf("%v\n", searchRangeV2(nums, target))
 
 }
